@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Background extends JPanel implements ActionListener {
     private final int DELAY = 30;  //kati bistarai move hunxa bhanera
-    private final Image backgImage = new ImageIcon("C:\\Java All\\space Shooter\\SpaceShooter\\Resources\\SpaceShooter-Background.jpg").getImage();
+    private final Image backgImage = new ImageIcon("C:\\Java All\\6th sem java project\\SpaceShooter\\Resources\\SpaceShooter-Background.jpg").getImage();
     private int y1 = 0;  // current y position of 1 backimg
     private int y2 = backgImage.getHeight(null);  // current y position of 2 back img
 
