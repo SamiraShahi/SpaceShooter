@@ -5,21 +5,15 @@ import java.io.IOException;
 
 public class Main  {
 
+    public static Background background;
+
     public static void main(String[] args) {
         JFrame frame = new JFrame(" Space Shooter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
+        frame.setSize(Constants.Window_width, Constants.Window_height);
 
-        Background background = new Background();
-        frame.add(background);
-        Spaceship spaceship = new Spaceship();
-        frame.add(spaceship);
-        Stars star=new Stars();
-        frame.add(star);
-
-
-
-
+         background = new Background();
+        frame.setContentPane(background);
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
