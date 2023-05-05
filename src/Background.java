@@ -6,6 +6,8 @@ public class Background extends JPanel {
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
 
+    public AlienGroups groupAliens = new AlienGroups();
+
 
     public Background() {
         super();
@@ -27,9 +29,10 @@ public class Background extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
 
-//      // SpaceShip Design
+//
 
-        g.drawImage(this.spaceShip.getImg(),this.spaceShip.movementSpaceShip(),this.spaceShip.getyPos(),null);
+        //Design SpaceShip
+        this.spaceShip.DesignAlienShip(g);
 
         //Star Genereate
         g.setColor(Color.WHITE);
@@ -38,5 +41,7 @@ public class Background extends JPanel {
                 g.fillOval(Constants.xC[i], Constants.yC[i], Constants.CIRCLE_SIZE, Constants.CIRCLE_SIZE);
             }
         }
+
+        this.groupAliens.designAlien(g);
     }
 }

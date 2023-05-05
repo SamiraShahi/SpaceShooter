@@ -14,7 +14,7 @@ public class Spaceship extends Entities{
         super.dx = 0;
         super.dy = 0;
 
-        super.shipImage = "/Resources/player.png";
+        super.shipImage = "/Resources/Spaceship.png";
 
 
         super.imgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(super.shipImage)));
@@ -38,6 +38,9 @@ public class Spaceship extends Entities{
 
     }
 
+    public void DesignAlienShip(Graphics g){
+        g.drawImage(this.img,this.movementSpaceShip(), this.yPos, null);
+    }
 
 
 
