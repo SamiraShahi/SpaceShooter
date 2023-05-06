@@ -13,6 +13,8 @@ public class AlienGroups {
     private boolean goARight,pos1;
     private int speed;
 
+    private int[] ArrDeathAlien = {-1,-1}; // Dead alien location in aliens array
+
     //Constructor
     public AlienGroups() {
         this.initArrayAliens();
@@ -27,25 +29,33 @@ public class AlienGroups {
         //Method that fills the full array of aliens
         for(int i=0; i<10; i++) {
             this.arrAlien[0][i] = new Alien(Constants.X_POS_INIT_ENEMY + (Constants.WIDTH_ENEMY + Constants.GAP_COLUMNS_ALIEN) * i,
-                    Constants.INIT_ALIEN, "/Resources/alien1.png", "/Resources/alien2.png");
+                    Constants.INIT_ALIEN, "/Resources/alien1.png", "/Resources/alien1.png");
             for(int j=1; j<3; j++) {
                 this.arrAlien[j][i] = new Alien(Constants.X_POS_INIT_ENEMY + (Constants.WIDTH_ENEMY + Constants.GAP_COLUMNS_ALIEN) *
-                        i, Constants.INIT_ALIEN + Constants.GAP_LINES_ALIEN * j, "/Resources/alien2.png", "/Resources/enemy2.png");
+                        i, Constants.INIT_ALIEN + Constants.GAP_LINES_ALIEN * j, "/Resources/alien2.png", "/Resources/alien2.png");
             }
             for(int j=3; j<5; j++) {
                 this.arrAlien[j][i] = new Alien(Constants.X_POS_INIT_ENEMY + (Constants.WIDTH_ENEMY + Constants.GAP_COLUMNS_ALIEN)
-                        * i, Constants.INIT_ALIEN + Constants.GAP_LINES_ALIEN * j, "/Resources/alien3.png", "/Resources/greenbat.png");
+                        * i, Constants.INIT_ALIEN + Constants.GAP_LINES_ALIEN * j, "/Resources/alien3.png", "/Resources/alien3.png");
             }
         }
     }
+
+
 
     public void designAlien(Graphics g){
         if(Time.countSteps % (100 - 10 * this.speed) == 0) {this.displacementAliens();}
 // Draw the aliens contained in the arrAlien array
         for(int i = 0; i <10; i++){
             for (int j =0; j<5;j++){
-                g.drawImage(this.arrAlien[j][i].getImg(),this.arrAlien[j][i].getxPos(),this.arrAlien[j][i].getyPos(),null);
+                if(this.arrAlien[j][i] != null) {
+                    this.arrAlien[j][i].choiceImage(pos1);
+
+                    g.drawImage(this.arrAlien[j][i].getImg(), this.arrAlien[j][i].getxPos(), this.arrAlien[j][i].getyPos(),
+                            null);
+                }
             }
+
         }
     }
 
@@ -54,9 +64,11 @@ public class AlienGroups {
         boolean response = false;
         for(int i=0; i<10; i++) {
             for(int j=0; j<5; j++) {
-                if(this.arrAlien[j][i].getxPos() < Constants.Window_margin){
-                    response = true;
-                    break;
+                if(this.arrAlien[j][i] != null) {
+                    if(this.arrAlien[j][i].getxPos() < Constants.Window_margin) {
+                        response = true;
+                        break;
+                    }
                 }
             }
         }
@@ -68,10 +80,12 @@ public class AlienGroups {
         boolean response = false;
         for(int i=0; i<10; i++) {
             for(int j=0; j<5; j++) {
-                if(this.arrAlien[j][i].getxPos() >
-                        Constants.Window_width - Constants.HEIGHT_ENEMY - Constants.DX_ENEMY - Constants.Window_margin) {
-                    response = true;
-                    break;
+                if(this.arrAlien[j][i] != null) {
+                    if(this.arrAlien[j][i].getxPos() >
+                            Constants.Window_width - Constants.HEIGHT_ENEMY - Constants.DX_ENEMY - Constants.Window_margin) {
+                        response = true;
+                        break;
+                    }
                 }
             }
         }
@@ -83,7 +97,9 @@ public class AlienGroups {
         if(this.rightEdgeKey() == true) {
             for(int i=0; i<10; i++) {
                 for(int j=0; j<5; j++) {
-                    this.arrAlien[j][i].setyPos(this.arrAlien[j][i].getyPos() + Constants.DY_ENEMY);
+                    if (this.arrAlien[j][i] != null) {
+                        this.arrAlien[j][i].setyPos(this.arrAlien[j][i].getyPos() + Constants.DY_ENEMY);
+                    }
                 }
             }
             this.goARight = false;
@@ -91,8 +107,10 @@ public class AlienGroups {
         } else {
             if(this.LeftEdgeKey() == true) {
                 for(int i=0; i<10; i++) {
-                    for(int j=0; j<5; j++) {this.arrAlien[j][i].setyPos(
-                            this.arrAlien[j][i].getyPos() + Constants.DY_ENEMY);
+                    for(int j=0; j<5; j++) {
+                        if (this.arrAlien[j][i] != null) {
+                            this.arrAlien[j][i].setyPos(this.arrAlien[j][i].getyPos() + Constants.DY_ENEMY);
+                        }
                     }
                 }
                 this.goARight = true;
@@ -103,25 +121,59 @@ public class AlienGroups {
 
     public void displacementAliens() {
         // Method that manages the movement of aliens
+        if(this.ArrDeathAlien[0] != -1) { // Elimination de l'alien mort si n�cessaire
+            EliminateAlienDeath(ArrDeathAlien);
+            ArrDeathAlien[0] = -1; // R�initialisation de arrAlienMort
+        }
         if(this.goARight == true) { // Move to the right
             for(int i=0; i<10; i++) {
                 for(int j=0; j<5; j++) {
-                    this.arrAlien[j][i].setxPos(this.arrAlien[j][i].getxPos() + Constants.DX_ENEMY);
+                    if(this.arrAlien[j][i] != null) {
+                        this.arrAlien[j][i].setxPos(this.arrAlien[j][i].getxPos() + Constants.DX_ENEMY);
+                    }
                 }
+
             }
-        }else{ // Move left
+        }else{// Move left
             for(int i=0; i<10; i++) {
                 for(int j=0; j<5; j++) {
-                    this.arrAlien[j][i].setxPos(this.arrAlien[j][i].getxPos() - Constants.DX_ENEMY);
+                    if (this.arrAlien[j][i] != null) {
+                        this.arrAlien[j][i].setxPos(this.arrAlien[j][i].getxPos() - Constants.DX_ENEMY);
+                    }
                 }
             }
         }
-
         // Change the alien's image
         if(this.pos1 == true) {this.pos1 = false;}
         else {this.pos1 = true;}
         // Update the direction of movement if an alien reaches the edge of the window
         this.alienRotatesAndDescends();
+    }
+
+
+    public void ShipBulletTouchAlien(ShipBullet shipBullet) {
+        // Detect shipBullet contact with alien
+        for(int i=0; i<10; i++) {
+            for(int j=0; j<5; j++) {
+                if(this.arrAlien[j][i] != null) {
+                    if(shipBullet.killAlien(this.arrAlien[j][i]) == true) {
+                        this.arrAlien[j][i].alive = false; // We kill the alien
+                        shipBullet.yPos = -1; // We kill the shot
+                        // We save the position of the dead alien in the array
+                        this.ArrDeathAlien[0] = j;
+                        this.ArrDeathAlien[1] = i;
+
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void EliminateAlienDeath(int[] ArrDeathAlien) {
+// Method that removes the dead alien from the array (null box)
+        this.arrAlien[ArrDeathAlien[0]][ArrDeathAlien[1]] = null;
     }
 
 }

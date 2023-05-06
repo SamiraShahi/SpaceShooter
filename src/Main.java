@@ -1,9 +1,8 @@
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.io.IOException;
 
-public class Main  {
+import javax.swing.*;
+
+
+public class   Main  {
 
     public static Background background;
 

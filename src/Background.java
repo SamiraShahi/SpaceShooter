@@ -5,8 +5,8 @@ import javax.swing.*;
 public class Background extends JPanel {
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
-
     public AlienGroups groupAliens = new AlienGroups();
+    public ShipBullet shipBullet = new ShipBullet();
 
 
     public Background() {
@@ -29,11 +29,6 @@ public class Background extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
 
-//
-
-        //Design SpaceShip
-        this.spaceShip.DesignAlienShip(g);
-
         //Star Genereate
         g.setColor(Color.WHITE);
         for (int i = 0; i < Constants.NUM_CIRCLES; i++) {
@@ -42,6 +37,15 @@ public class Background extends JPanel {
             }
         }
 
+        //Design SpaceShip
+        this.spaceShip.DesignAlienShip(g);
+
         this.groupAliens.designAlien(g);
+
+        //Drawing of Bullet
+        this.shipBullet.DrawingBullet(g);
+
+        // Detect shipShot contact with alien
+        this.groupAliens.ShipBulletTouchAlien(this.shipBullet);
     }
 }
