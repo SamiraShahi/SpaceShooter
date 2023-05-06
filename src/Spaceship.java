@@ -14,10 +14,13 @@ public class Spaceship extends Entities{
         super.dx = 0;
         super.dy = 0;
 
-        super.shipImage = "/Resources/Spaceship.png";
+        super.strImg1 = "/Resources/Spaceship.png";
+        super.strImg2 = "/Resources/destroyShip1.png";
+        super.strImg3 = "/Resources/destroyShip2.png";
 
 
-        super.imgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(super.shipImage)));
+
+        super.imgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(super.strImg1)));
         super.img = this.imgIcon.getImage();
 
     }

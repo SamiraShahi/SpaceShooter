@@ -1,6 +1,6 @@
 
 public class Time implements Runnable{
-    private final int PAUSE = 5;
+    private final int PAUSE = 1;
     public static int countSteps = 0;
     @Override
     public void run() {
@@ -10,7 +10,7 @@ public class Time implements Runnable{
             try {
                 Thread.sleep(PAUSE);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+
             }
         }
     }

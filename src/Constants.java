@@ -6,8 +6,8 @@ public abstract class Constants {
     public static final int Window_margin = 50;
 
     //    Dimension of spaceship
-    public static final int SPACESHIP_WIDTH = 0;
-    public static final int SPACESHIP_HEIGHT = 0;
+    public static final int SPACESHIP_WIDTH = 55;
+    public static final int SPACESHIP_HEIGHT = 60;
 
     //Position initial of Spaceship
     public final static int X_POSITION_Spaceship = (Window_width- SPACESHIP_WIDTH)/2;
@@ -20,7 +20,7 @@ public abstract class Constants {
 
     // Limit movement of spaceship
     public final static int limit_left_ship = 10;
-    public final static int limit_right_ship = 730;
+    public final static int limit_right_ship = 710;
     public static final int NUM_CIRCLES = 100;
 
     //Star
@@ -52,6 +52,13 @@ public abstract class Constants {
     public final static int DX_ENEMY = 5;
     public final static int DY_ENEMY = 25;
 
-    public static int ALIEN_SPEED = 8;
+    public static int ALIEN_SPEED = 9;
+
+    //Dimensions of Bullet
+    public static final int SPACESHIP_BULLET_WIDTH = 5;
+    public static final int SPACESHIP_BULLET_HEIGHT = 15;
+
+    // Bullet movement unit
+    public final static int DY_BULLET = 10;
 
 }
