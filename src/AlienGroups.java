@@ -117,7 +117,7 @@ public class AlienGroups {
             }
         }
 
-// Change the alien's image
+        // Change the alien's image
         if(this.pos1 == true) {this.pos1 = false;}
         else {this.pos1 = true;}
         // Update the direction of movement if an alien reaches the edge of the window
