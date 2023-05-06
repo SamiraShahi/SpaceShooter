@@ -24,15 +24,5 @@ public class Alien extends Entities {
 
     }
 
-    public void choiceImage(boolean pos1) {
-        // Method that loads the alien's image according to its position (1 or 2)
-        if(pos1 == true)
-        {
-            super.imgIcon = new ImageIcon(getClass().getResource(strImg1));
-        }
-        else {
-            super.imgIcon = new ImageIcon(getClass().getResource(strImg2));
-        }
-        super.img = this.imgIcon.getImage(); // reload the image
-    }
+
 }

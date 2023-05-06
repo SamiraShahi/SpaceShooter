@@ -52,6 +52,6 @@ public abstract class Constants {
     public final static int DX_ENEMY = 5;
     public final static int DY_ENEMY = 25;
 
-    public static int ALIEN_SPEED = 6;
+    public static int ALIEN_SPEED = 8;
 
 }
