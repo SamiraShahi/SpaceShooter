@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import static javax.swing.text.StyleConstants.setBackground;
 
 public class Stars extends Spaceship implements Runnable {
-    private static final long serialize= 1L;
 
 
     private Random random = new Random();

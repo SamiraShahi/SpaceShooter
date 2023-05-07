@@ -5,6 +5,7 @@ import javax.swing.*;
 public class   Main  {
 
     public static Background background;
+    public static boolean game = true;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame(" Space Shooter");

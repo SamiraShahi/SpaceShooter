@@ -38,4 +38,14 @@ public class AlienBullet extends Entities{
         g.drawImage(this.img, this.xPos, this.deplacementShotAlien(), null);
     }
 
+    public boolean shipkey(Spaceship spaceship) {
+        // Returns true if an Alienshot hits the ship
+        if(this.yPos < spaceship.getyPos() + spaceship.getHeight() && this.yPos + this.height > spaceship.getyPos()
+                && this.xPos + this.width > spaceship.getxPos() && this.xPos < spaceship.getxPos() + spaceship.getWidth()){
+            this.yPos = 900;
+            return true;
+        }
+        else{return false;}
+    }
+
 }

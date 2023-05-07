@@ -4,7 +4,6 @@ import java.awt.*;
 public abstract class  Entities {
     protected int width, height , xPos , yPos, dx, dy;
     protected boolean alive;
-
     protected String  strImg1, strImg2, strImg3;
     protected ImageIcon imgIcon;
     protected Image img;
