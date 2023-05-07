@@ -8,6 +8,8 @@ public class Background extends JPanel {
     public AlienGroups groupAliens = new AlienGroups();
     public ShipBullet shipBullet = new ShipBullet();
 
+    public AlienBullet alienBullet1, alienBullet2, alienBullet3;
+
 
     public Background() {
         super();
@@ -47,5 +49,19 @@ public class Background extends JPanel {
 
         // Detect shipShot contact with alien
         this.groupAliens.ShipBulletTouchAlien(this.shipBullet);
+
+        // Dessin des tirs des aliens
+        if(Time.countSteps % 700 == 0) {
+            alienBullet1 = new AlienBullet(this.groupAliens.AlienRandomShot());}
+        if(this.alienBullet1 != null) {this.alienBullet1.DrawingShootingAlien(g);}
+        if(Time.countSteps % 800 == 0) {
+            alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
+        if(this.alienBullet2 != null) {this.alienBullet2.DrawingShootingAlien(g);}
+        if(Time.countSteps % 900 == 0) {
+            alienBullet3 = new AlienBullet(this.groupAliens.AlienRandomShot());}
+        if(this.alienBullet3 != null) {this.alienBullet3.DrawingShootingAlien(g);}
+
+
+
     }
 }

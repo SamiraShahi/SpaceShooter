@@ -2,6 +2,7 @@
 
 
 import java.awt.*;
+import java.util.Random;
 
 public class AlienGroups {
 
@@ -14,6 +15,10 @@ public class AlienGroups {
     private int speed;
 
     private int[] ArrDeathAlien = {-1,-1}; // Dead alien location in aliens array
+
+    Random chance = new Random();
+
+    private int numberAliens = Constants.NUMBER_ALIENS;
 
     //Constructor
     public AlienGroups() {
@@ -174,6 +179,27 @@ public class AlienGroups {
     private void EliminateAlienDeath(int[] ArrDeathAlien) {
 // Method that removes the dead alien from the array (null box)
         this.arrAlien[ArrDeathAlien[0]][ArrDeathAlien[1]] = null;
+    }
+
+
+    public int[] AlienRandomShot() {
+        // Returns the position of an alien drawn at random in arrAlien at the bottom of its
+        // column (row, column)
+        int positionAlien[] = {-1,-1};
+        if(this.numberAliens != 0) { // On v�rifie qu'il reste des aliens vivants
+            do {int i = chance.nextInt(10); // On tire au hasard une i du
+                // tableau des aliens
+                for(int j=4;j>=0;j--) { // On cherche le 1er alien vivant
+                    // en partant du bas
+                    if(arrAlien[j][i]!= null) {
+                        positionAlien[0] = this.arrAlien[j][i].getxPos();
+                        positionAlien[1] = this.arrAlien[j][i].getyPos();
+                        break;
+                    }
+                }
+            } while(positionAlien[0] == -1);
+        }
+        return positionAlien;
     }
 
 }
