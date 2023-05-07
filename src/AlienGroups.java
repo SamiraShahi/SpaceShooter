@@ -126,11 +126,11 @@ public class AlienGroups {
 
     public void displacementAliens() {
         // Method that manages the movement of aliens
-        if(this.ArrDeathAlien[0] != -1) { // Elimination de l'alien mort si n�cessaire
+        if(this.ArrDeathAlien[0] != -1) {
             EliminateAlienDeath(ArrDeathAlien);
-            ArrDeathAlien[0] = -1; // R�initialisation de arrAlienMort
+            ArrDeathAlien[0] = -1;
         }
-        if(this.goARight == true) { // Move to the right
+        if(this.goARight == true) {
             for(int i=0; i<10; i++) {
                 for(int j=0; j<5; j++) {
                     if(this.arrAlien[j][i] != null) {
@@ -186,11 +186,9 @@ public class AlienGroups {
         // Returns the position of an alien drawn at random in arrAlien at the bottom of its
         // column (row, column)
         int positionAlien[] = {-1,-1};
-        if(this.numberAliens != 0) { // On v�rifie qu'il reste des aliens vivants
-            do {int i = chance.nextInt(10); // On tire au hasard une i du
-                // tableau des aliens
-                for(int j=4;j>=0;j--) { // On cherche le 1er alien vivant
-                    // en partant du bas
+        if(this.numberAliens != 0) {
+            do {int i = chance.nextInt(10);
+                for(int j=4;j>=0;j--) {
                     if(arrAlien[j][i]!= null) {
                         positionAlien[0] = this.arrAlien[j][i].getxPos();
                         positionAlien[1] = this.arrAlien[j][i].getyPos();

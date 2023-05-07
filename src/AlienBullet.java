@@ -7,25 +7,25 @@ public class AlienBullet extends Entities{
     Random chance = new Random();
 
     public AlienBullet(int [] arrayPositionAlien) {
-        // Initialisation des variables de la super classe
+
         super.xPos = arrayPositionAlien[0] + Constants.WIDTH_ENEMY /2 - 1;
         super.yPos = arrayPositionAlien[1] + Constants.HEIGHT_ENEMY;
         super.width = Constants.ALIEN_BULLET_WIDTH;
         super.height = Constants.ALIEN_BULLET_HEIGHT;
         super.dx = 0;
         super.dy = Constants.DY_BULLET_ALIEN;
-        // Adresse des images du vaisseau
+
         super.strImg1 = "/Resources/shotAlien1.png";
         super.strImg2 = "/Resources/shotAlien2.png";
         super.strImg3 = "";
-        // Chargement de l'image du tir de l'alien
+
         if(chance.nextInt(2) == 0) {
             super.imgIcon = new ImageIcon(getClass().getResource(super.strImg1));}
         else {super.imgIcon = new ImageIcon(getClass().getResource(super.strImg2));}
         super.img = this.imgIcon.getImage();
     }
 
-    /**** METHODE ****/
+    /**** METHODS ****/
 
     public int deplacementShotAlien() {
         if(Time.countSteps % 4 == 0) {

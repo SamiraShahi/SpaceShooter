@@ -69,7 +69,7 @@ public abstract class Constants {
     public static final int ALIEN_BULLET_HEIGHT = 15;
 
     // Shot movement unit
-    public final static int DY_BULLET_ALIEN = 10;
+    public final static int DY_BULLET_ALIEN = 5;
 
 
 }
