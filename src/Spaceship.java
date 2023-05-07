@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class Spaceship extends Entities{
 
+    private int counter = 0;
 
     public Spaceship() {
         super.xPos = Constants.X_POSITION_Spaceship;
@@ -15,13 +16,14 @@ public class Spaceship extends Entities{
         super.dy = 0;
 
         super.strImg1 = "/Resources/Spaceship.png";
-        super.strImg2 = "/Resources/destroyShip1.png";
-        super.strImg3 = "/Resources/destroyShip2.png";
+        super.strImg2 = "/Resources/DestroyShip.png";
+        super.strImg3 = "/Resources/DestroyShip1.png";
 
 
 
         super.imgIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(super.strImg1)));
         super.img = this.imgIcon.getImage();
+        super.alive = true;
 
     }
 
@@ -42,7 +44,18 @@ public class Spaceship extends Entities{
     }
 
     public void DesignAlienShip(Graphics g){
+        if(this.alive == false) {this.destructionSpaceShip();}
         g.drawImage(this.img,this.movementSpaceShip(), this.yPos, null);
+    }
+
+    public void destructionSpaceShip() {
+        if(counter < 300) {
+            if(Time.countSteps % 2 == 0) {super.imgIcon = new ImageIcon(getClass().getResource(super.strImg2));}
+            else {super.imgIcon = new ImageIcon(getClass().getResource(super.strImg3));}
+            counter++;
+        }else {
+            Main.game = false;}
+        super.img = this.imgIcon.getImage();
     }
 
 

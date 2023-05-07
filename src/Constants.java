@@ -15,7 +15,7 @@ public abstract class Constants {
 
     //
     public final static int DX_Spaceship = 3;
-//    public final static int DY_Spaceship = 1;
+
 
 
     // Limit movement of spaceship
@@ -52,7 +52,7 @@ public abstract class Constants {
     public final static int DX_ENEMY = 5;
     public final static int DY_ENEMY = 25;
 
-    public static int ALIEN_SPEED = 9;
+    public static int ALIEN_SPEED = 1;
 
     public final static int NUMBER_ALIENS = 50;
 

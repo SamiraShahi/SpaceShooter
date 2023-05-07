@@ -4,7 +4,7 @@ public class Time implements Runnable{
     public static int countSteps = 0;
     @Override
     public void run() {
-        while (true) {
+        while (Main.game == true) {
             countSteps++;
             Main.background.repaint();
             try {

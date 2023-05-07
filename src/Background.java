@@ -51,12 +51,20 @@ public class Background extends JPanel {
         this.groupAliens.ShipBulletTouchAlien(this.shipBullet);
 
         //Drawing Alien bullet
-        if(Time.countSteps % 800 == 0) {
+
+        if(Time.countSteps % 900 == 0) {
             alienBullet1 = new AlienBullet(this.groupAliens.AlienRandomShot());}
-        if(this.alienBullet1 != null) {this.alienBullet1.DrawingShootingAlien(g);}
+        if(this.alienBullet1 != null) {
+            this.alienBullet1.DrawingShootingAlien(g);
+            if(this.alienBullet1.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
+        }
+
         if(Time.countSteps % 900 == 0) {
             alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
-        if(this.alienBullet2 != null) {this.alienBullet2.DrawingShootingAlien(g);}
+        if(this.alienBullet2 != null) {
+            this.alienBullet2.DrawingShootingAlien(g);
+            if(this.alienBullet2.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
+        }
 
 
 
