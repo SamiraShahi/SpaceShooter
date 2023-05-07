@@ -54,11 +54,22 @@ public abstract class Constants {
 
     public static int ALIEN_SPEED = 9;
 
+    public final static int NUMBER_ALIENS = 50;
+
     //Dimensions of Bullet
     public static final int SPACESHIP_BULLET_WIDTH = 5;
     public static final int SPACESHIP_BULLET_HEIGHT = 15;
 
     // Bullet movement unit
     public final static int DY_BULLET = 10;
+
+    //ALIEN SHOOTING ************************************/
+    // Dimensions of the shot
+    public static final int ALIEN_BULLET_WIDTH = 5;
+    public static final int ALIEN_BULLET_HEIGHT = 15;
+
+    // Shot movement unit
+    public final static int DY_BULLET_ALIEN = 10;
+
 
 }
