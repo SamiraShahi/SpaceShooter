@@ -13,6 +13,7 @@ public class AlienGroups {
     private final Alien[][] arrAlien = new Alien[5][10];
     private boolean goARight,pos1;
     private int speed;
+    private int score;
 
     private int[] ArrDeathAlien = {-1,-1}; // Dead alien location in aliens array
 
@@ -26,6 +27,7 @@ public class AlienGroups {
         this.goARight = true;
         this.pos1 = true;
         this.speed = Constants.ALIEN_SPEED;
+        this.score=0;
     }
 
 
@@ -154,19 +156,28 @@ public class AlienGroups {
         // Update the direction of movement if an alien reaches the edge of the window
         this.alienRotatesAndDescends();
     }
-
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public void ShipBulletTouchAlien(ShipBullet shipBullet) {
         // Detect shipBullet contact with alien
         for(int i=0; i<10; i++) {
             for(int j=0; j<5; j++) {
                 if(this.arrAlien[j][i] != null) {
+
                     if(shipBullet.killAlien(this.arrAlien[j][i]) == true) {
+
                         this.arrAlien[j][i].alive = false; // We kill the alien
+                        score=score+2;
                         shipBullet.yPos = -1; // We kill the shot
                         // We save the position of the dead alien in the array
                         this.ArrDeathAlien[0] = j;
                         this.ArrDeathAlien[1] = i;
+
 
 
                     }
@@ -179,6 +190,7 @@ public class AlienGroups {
     private void EliminateAlienDeath(int[] ArrDeathAlien) {
 // Method that removes the dead alien from the array (null box)
         this.arrAlien[ArrDeathAlien[0]][ArrDeathAlien[1]] = null;
+
     }
 
 
@@ -196,6 +208,9 @@ public class AlienGroups {
                     }
                 }
             } while(positionAlien[0] == -1);
+
+
+
         }
         return positionAlien;
     }
