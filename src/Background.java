@@ -3,6 +3,8 @@ import javax.swing.*;
 
 
 public class Background extends JPanel {
+    private JLabel scoreLabel;
+
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
     public AlienGroups groupAliens = new AlienGroups();
@@ -13,6 +15,14 @@ public class Background extends JPanel {
 
     public Background() {
         super();
+        //scorelable
+        scoreLabel = new JLabel("Score: 0");
+        scoreLabel.setForeground(Color.WHITE);
+        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+        scoreLabel.setBounds(10, 10, 150, 30);
+
+
+        this.add(scoreLabel);
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -50,6 +60,7 @@ public class Background extends JPanel {
         // Detect shipShot contact with alien
         this.groupAliens.ShipBulletTouchAlien(this.shipBullet);
 
+
         //Drawing Alien bullet
 
         if(Time.countSteps % 900 == 0) {
@@ -63,9 +74,12 @@ public class Background extends JPanel {
             alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
         if(this.alienBullet2 != null) {
             this.alienBullet2.DrawingShootingAlien(g);
-            if(this.alienBullet2.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
+            if(this.alienBullet2.shipkey(spaceShip) == true) {
+                this.spaceShip.setAlive(false);}
+
         }
 
+        scoreLabel.setText("Score: " +groupAliens.getScore());
 
 
 

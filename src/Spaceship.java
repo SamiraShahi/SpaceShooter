@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.util.Objects;
 import javax.swing.*;
 
-public class Spaceship extends Entities{
+public class Spaceship extends Entities {
 
     private int counter = 0;
 
@@ -48,17 +48,21 @@ public class Spaceship extends Entities{
         g.drawImage(this.img,this.movementSpaceShip(), this.yPos, null);
     }
 
+
     public void destructionSpaceShip() {
         if(counter < 300) {
             if(Time.countSteps % 2 == 0) {super.imgIcon = new ImageIcon(getClass().getResource(super.strImg2));}
             else {super.imgIcon = new ImageIcon(getClass().getResource(super.strImg3));}
             counter++;
         }else {
-            Main.game = false;}
+            Main.game = false;
+        }
         super.img = this.imgIcon.getImage();
+
     }
 
 
 
-}
 
+
+}

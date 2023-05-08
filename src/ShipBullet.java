@@ -7,6 +7,7 @@ public class ShipBullet extends Entities{
 
 
 
+
     public ShipBullet(){
         super.xPos = 0;
         super.yPos = Constants.Y_POSITION_Spaceship;
@@ -51,15 +52,21 @@ public class ShipBullet extends Entities{
         }
     }
 
+
+
+
     public boolean killAlien(Alien alien) {
         // the shot from the ship destroys an alien
         if(this.yPos < alien.getyPos() + alien.getWidth()
                 && this.yPos + this.width > alien.getyPos()
                 && this.xPos + this.height > alien.getxPos()
                 && this.xPos < alien.getxPos() + alien.getHeight()){
+            // Close the current frame and open the GameOver frame
+
             return true;
         }
         else{return false;}
     }
+
 
 }
