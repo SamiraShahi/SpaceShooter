@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameOver extends JPanel {
-    public static void main(String[] args) {
+    public GameOver() {
         JFrame frame2 = new JFrame();
 
 
@@ -11,8 +11,7 @@ public class GameOver extends JPanel {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon image = new ImageIcon("C:\\Java All\\SpaceShooter\\src\\Resources\\FINISH.jpg");
-                g.drawImage(image.getImage(), 0, 0, getWidth(), getHeight(), null);
+
             }
         };
         panel.setPreferredSize(new Dimension(Constants.Window_width, Constants.Window_height)); // Set panel size
@@ -54,6 +53,4 @@ public class GameOver extends JPanel {
 
     }
 
-    public void showGameOver() {
-    }
 }
