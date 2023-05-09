@@ -5,6 +5,8 @@ import java.awt.event.*;
 public class GameOver extends JPanel {
     public static void main(String[] args) {
         JFrame frame2 = new JFrame();
+
+
         JPanel panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -50,5 +52,8 @@ public class GameOver extends JPanel {
 
         frame2.setVisible(true);
 
+    }
+
+    public void showGameOver() {
     }
 }

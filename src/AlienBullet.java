@@ -52,10 +52,7 @@ public class AlienBullet extends Entities {
 
             //After the bullet hits the ship Gameover is shown
 
-            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(Main.background);
-            currentFrame.dispose();
-            GameOver gameOverFrame = new GameOver();
-            gameOverFrame.main(new String[0]);
+
 
 
             return true;

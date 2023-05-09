@@ -57,10 +57,10 @@ public class ShipBullet extends Entities{
 
     public boolean killAlien(Alien alien) {
         // the shot from the ship destroys an alien
-        if(this.yPos < alien.getyPos() + alien.getWidth()
-                && this.yPos + this.width > alien.getyPos()
-                && this.xPos + this.height > alien.getxPos()
-                && this.xPos < alien.getxPos() + alien.getHeight()){
+        if(this.yPos < alien.getyPos() + alien.getHeight()
+                && this.yPos + this.height > alien.getyPos()
+                && this.xPos + this.width > alien.getxPos()
+                && this.xPos < alien.getxPos() + alien.getWidth()){
             // Close the current frame and open the GameOver frame
 
             return true;

@@ -5,12 +5,19 @@ import javax.swing.*;
 public class Background extends JPanel {
     private JLabel scoreLabel;
 
+
+    public GameOver gameOver = new GameOver();
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
     public AlienGroups groupAliens = new AlienGroups();
     public ShipBullet shipBullet = new ShipBullet();
 
     public AlienBullet alienBullet1, alienBullet2;
+
+
+
+    public int score = 0;
+    private Font afficheTexte = new Font("Arial", Font.PLAIN, 80);
 
 
     public Background() {
@@ -29,6 +36,10 @@ public class Background extends JPanel {
         this.addKeyListener(new Keyboard());
         Thread timer = new Thread(new Time());
         timer.start();
+
+
+
+
 
     }
 
@@ -70,7 +81,7 @@ public class Background extends JPanel {
             if(this.alienBullet1.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
         }
 
-        if(Time.countSteps % 900 == 0) {
+        if(Time.countSteps % 1200 == 0) {
             alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
         if(this.alienBullet2 != null) {
             this.alienBullet2.DrawingShootingAlien(g);
@@ -79,9 +90,20 @@ public class Background extends JPanel {
 
         }
 
-        scoreLabel.setText("Score: " +groupAliens.getScore());
+        if(this.groupAliens.getAlienNumber() == 0) {groupAliens = new AlienGroups();}
 
 
+        if(this.groupAliens.positionAlienLowest() > Constants.Y_POSITION_Spaceship) {this.spaceShip.destructionSpaceShip();}
+
+        scoreLabel.setText("Score: " +score);
+
+        if(!this.spaceShip.isAlive()) {
+            ImageIcon image = new ImageIcon("C:\\Java All\\SpaceShooter\\src\\Resources\\FINISH.jpg");
+            g.drawImage(image.getImage(), 0, 0, getWidth(), getHeight(), null);
+
+
+
+        }
 
     }
 }
