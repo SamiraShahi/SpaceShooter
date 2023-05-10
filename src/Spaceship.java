@@ -7,7 +7,10 @@ public class Spaceship extends Entities {
 
     private int counter = 0;
 
+    private Rectangle spaceshipBoundingBox;
+
     public Spaceship() {
+        this.spaceshipBoundingBox = new Rectangle(Constants.X_POSITION_Spaceship, Constants.Y_POSITION_Spaceship, Constants.SPACESHIP_WIDTH, Constants.SPACESHIP_HEIGHT);
         super.xPos = Constants.X_POSITION_Spaceship;
         super.yPos = Constants.Y_POSITION_Spaceship;
         super.width = Constants.SPACESHIP_WIDTH;
@@ -44,7 +47,9 @@ public class Spaceship extends Entities {
     }
 
     public void DesignAlienShip(Graphics g){
-        if(this.alive == false) {this.destructionSpaceShip();}
+        if(this.alive == false) {
+            this.destructionSpaceShip();
+        }
         g.drawImage(this.img,this.movementSpaceShip(), this.yPos, null);
     }
 

@@ -16,7 +16,7 @@ public class Background extends JPanel {
     public AlienGroups groupAliens = new AlienGroups();
     public ShipBullet shipBullet = new ShipBullet();
 
-    public AlienBullet alienBullet1, alienBullet2;
+    public AlienBullet alienBullet1, alienBullet2, alienBullet3;
 
 
 
@@ -85,11 +85,20 @@ public class Background extends JPanel {
             if(this.alienBullet1.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
         }
 
-        if(Time.countSteps % 1200 == 0) {
+        if(Time.countSteps % 1000 == 0) {
             alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
         if(this.alienBullet2 != null) {
             this.alienBullet2.DrawingShootingAlien(g);
             if(this.alienBullet2.shipkey(spaceShip) == true) {
+                this.spaceShip.setAlive(false);}
+
+        }
+
+        if(Time.countSteps % 1200 == 0) {
+            alienBullet3 = new AlienBullet(this.groupAliens.AlienRandomShot());}
+        if(this.alienBullet3 != null) {
+            this.alienBullet3.DrawingShootingAlien(g);
+            if(this.alienBullet3.shipkey(spaceShip) == true) {
                 this.spaceShip.setAlive(false);}
 
         }
@@ -116,7 +125,7 @@ public class Background extends JPanel {
             restartButton.setBounds(250, 450, 250, 50);
 
             // Add the restart button to the panel
-            this.add(restartButton);
+            add(restartButton);
 
             // Add an action listener to the restart button
             this.restartButton.addActionListener(new ActionListener() {
@@ -124,7 +133,11 @@ public class Background extends JPanel {
                 public void actionPerformed(ActionEvent e) {
 
                     // Remove the restart button from the panel
-                    remove(restartButton);
+                    Container parent = restartButton.getParent();
+                    parent.remove(restartButton);
+
+                    parent.revalidate();
+                    parent.repaint();
 
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(Main.background);
 

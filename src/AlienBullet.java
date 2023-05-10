@@ -17,7 +17,7 @@ public class AlienBullet extends Entities {
         super.dx = 0;
         super.dy = Constants.DY_BULLET_ALIEN;
 
-        super.strImg1 = "/Resources/shotAlien1.png";
+        super.strImg1 = "/Resources/alienBullet.png";
         super.strImg2 = "/Resources/shotAlien2.png";
         super.strImg3 = "";
 
@@ -51,9 +51,6 @@ public class AlienBullet extends Entities {
             this.yPos = 900;
 
             //After the bullet hits the ship Gameover is shown
-
-
-
 
             return true;
         } else {

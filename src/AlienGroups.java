@@ -18,7 +18,11 @@ public class AlienGroups {
 
     Random chance = new Random();
 
+    private Font gameOverFont = new Font("Arial", Font.BOLD, 80);
+
     private int numberAliens = Constants.NUMBER_ALIENS;
+    private Rectangle spaceshipBoundingBox;
+
 
     //Constructor
     public AlienGroups() {
@@ -26,6 +30,7 @@ public class AlienGroups {
         this.goARight = true;
         this.pos1 = true;
         this.speed = Constants.ALIEN_SPEED;
+        this.spaceshipBoundingBox = new Rectangle(Constants.X_POSITION_Spaceship, Constants.Y_POSITION_Spaceship, Constants.SPACESHIP_WIDTH, Constants.SPACESHIP_HEIGHT);
     }
 
 
@@ -58,6 +63,16 @@ public class AlienGroups {
 
                     g.drawImage(this.arrAlien[j][i].getImg(), this.arrAlien[j][i].getxPos(), this.arrAlien[j][i].getyPos(),
                             null);
+
+                    Rectangle alienBoundingBox = new Rectangle(this.arrAlien[j][i].getxPos(), this.arrAlien[j][i].getyPos(), Constants.WIDTH_ENEMY, Constants.HEIGHT_ENEMY);
+
+                    if (alienBoundingBox.intersects(spaceshipBoundingBox)) {
+
+                        // Collision detected, end the game
+                        g.setFont(gameOverFont);
+                        g.drawString("GAME OVER", 150, 400);
+
+                    }
                 }
             }
 
@@ -108,7 +123,7 @@ public class AlienGroups {
                 }
             }
             this.goARight = false;
-            if(this.speed < 5) {this.speed++;}
+            if(this.speed < 9) {this.speed++;}
         } else {
             if(this.LeftEdgeKey() == true) {
                 for(int i=0; i<10; i++) {
