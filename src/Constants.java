@@ -51,7 +51,7 @@ public abstract class Constants {
     public final static int DX_ENEMY = 5;
     public final static int DY_ENEMY = 25;
 
-    public static int ALIEN_SPEED = 5;
+    public static int ALIEN_SPEED = 9;
 
     public final static int NUMBER_ALIENS = 50;
 
@@ -68,7 +68,7 @@ public abstract class Constants {
     public static final int ALIEN_BULLET_HEIGHT = 15;
 
     // Shot movement unit
-    public final static int DY_BULLET_ALIEN = 5;
+    public final static int DY_BULLET_ALIEN = 6;
 
 
 }
