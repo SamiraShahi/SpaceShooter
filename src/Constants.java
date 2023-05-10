@@ -21,10 +21,9 @@ public abstract class Constants {
     // Limit movement of spaceship
     public final static int limit_left_ship = 10;
     public final static int limit_right_ship = 710;
-    public static final int NUM_CIRCLES = 100;
 
     //Star
-
+    public static final int NUM_CIRCLES = 100;
     public static final int CIRCLE_SIZE = 2;
 
     public static int[] xC = new int[NUM_CIRCLES];
@@ -52,7 +51,7 @@ public abstract class Constants {
     public final static int DX_ENEMY = 5;
     public final static int DY_ENEMY = 25;
 
-    public static int ALIEN_SPEED = 1;
+    public static int ALIEN_SPEED = 5;
 
     public final static int NUMBER_ALIENS = 50;
 

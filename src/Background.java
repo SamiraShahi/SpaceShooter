@@ -1,9 +1,15 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
 public class Background extends JPanel {
     private JLabel scoreLabel;
+
+    private JButton restartButton;
+
+    Main game = new Main();
 
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
@@ -11,6 +17,11 @@ public class Background extends JPanel {
     public ShipBullet shipBullet = new ShipBullet();
 
     public AlienBullet alienBullet1, alienBullet2;
+
+
+
+    public int score = 0;
+    private Font gameOverFont = new Font("Arial", Font.BOLD, 80);
 
 
     public Background() {
@@ -29,6 +40,10 @@ public class Background extends JPanel {
         this.addKeyListener(new Keyboard());
         Thread timer = new Thread(new Time());
         timer.start();
+
+
+
+
 
     }
 
@@ -70,7 +85,7 @@ public class Background extends JPanel {
             if(this.alienBullet1.shipkey(spaceShip) == true) {this.spaceShip.setAlive(false);}
         }
 
-        if(Time.countSteps % 900 == 0) {
+        if(Time.countSteps % 1200 == 0) {
             alienBullet2 = new AlienBullet(this.groupAliens.AlienRandomShot());}
         if(this.alienBullet2 != null) {
             this.alienBullet2.DrawingShootingAlien(g);
@@ -79,9 +94,53 @@ public class Background extends JPanel {
 
         }
 
-        scoreLabel.setText("Score: " +groupAliens.getScore());
+        if(this.groupAliens.getAlienNumber() == 0) {groupAliens = new AlienGroups();}
 
 
+        if(this.groupAliens.positionAlienLowest() > Constants.Y_POSITION_Spaceship) {this.spaceShip.destructionSpaceShip();}
+
+        scoreLabel.setText("Score: " +score);
+
+        if(this.spaceShip.isAlive() == false) {
+
+            g.setFont(gameOverFont);
+            g.drawString("GAME OVER", 150, 400);
+
+            restartButton = new JButton("Restart");
+            restartButton.setPreferredSize(new Dimension(250, 50)); // customize the size of the button
+            restartButton.setBackground(Color.green);
+            restartButton.setForeground(Color.BLACK);
+            restartButton.setFont(new Font("Arial", Font.BOLD, 18));
+
+            // Set the position of the restart button
+            restartButton.setBounds(250, 450, 250, 50);
+
+            // Add the restart button to the panel
+            this.add(restartButton);
+
+            // Add an action listener to the restart button
+            this.restartButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    // Remove the restart button from the panel
+                    remove(restartButton);
+
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(Main.background);
+
+                     game.game = true;
+
+                    // Call the main method of the Main class  to start the game
+                    game.main(new String[0]);
+
+                    currentFrame.dispose();
+
+                }
+
+
+            });
+
+        }
 
     }
 }
