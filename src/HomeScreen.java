@@ -5,6 +5,7 @@ import java.awt.event.*;
 public class HomeScreen {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
+        Main game = new Main();
         JPanel panel = new JPanel() {
             @Override
             public void paintComponent(Graphics g) {
@@ -32,8 +33,7 @@ public class HomeScreen {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    // Create an instance of the Main class
-                    Main game = new Main();
+
                     // Call the main method of the Main class  to start the game
                     game.main(new String[0]);
                     // Close the home screen window

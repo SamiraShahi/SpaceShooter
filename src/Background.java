@@ -9,6 +9,7 @@ public class Background extends JPanel {
 
     private JButton restartButton;
 
+    Main game = new Main();
 
     public Spaceship spaceShip = new Spaceship();
     public Stars stars = new Stars();
@@ -100,20 +101,19 @@ public class Background extends JPanel {
 
         scoreLabel.setText("Score: " +score);
 
-        if(!this.spaceShip.isAlive()) {
+        if(this.spaceShip.isAlive() == false) {
 
             g.setFont(gameOverFont);
             g.drawString("GAME OVER", 150, 400);
 
-
-            this.restartButton = new JButton("Restart");
-            this.restartButton.setPreferredSize(new Dimension(250, 50)); // customize the size of the button
-            this.restartButton.setBackground(Color.green);
-            this.restartButton.setForeground(Color.BLACK);
-            this.restartButton.setFont(new Font("Arial", Font.BOLD, 18));
+            restartButton = new JButton("Restart");
+            restartButton.setPreferredSize(new Dimension(250, 50)); // customize the size of the button
+            restartButton.setBackground(Color.green);
+            restartButton.setForeground(Color.BLACK);
+            restartButton.setFont(new Font("Arial", Font.BOLD, 18));
 
             // Set the position of the restart button
-            this.restartButton.setBounds(250, 450, 250, 50);
+            restartButton.setBounds(250, 450, 250, 50);
 
             // Add the restart button to the panel
             this.add(restartButton);
@@ -122,19 +122,18 @@ public class Background extends JPanel {
             this.restartButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Create an instance of the Main class
-                    Main game = new Main();
-                    // Call the main method of the Main class  to start the game
-                    game.main(new String[0]);
 
                     // Remove the restart button from the panel
                     remove(restartButton);
 
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(Main.background);
 
+                     game.game = true;
 
+                    // Call the main method of the Main class  to start the game
+                    game.main(new String[0]);
 
-
-
+                    currentFrame.dispose();
 
                 }
 
